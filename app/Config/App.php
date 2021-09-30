@@ -23,8 +23,10 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost';
+    public $baseURL = 'http://localhost/';
 
+    // public $baseURL = 'http://tulongmanilenyo.ph';
+    // public $baseURL = 'http://localhost:8080';
     /**
      * --------------------------------------------------------------------------
      * Index File
@@ -36,7 +38,8 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $indexPage = 'index.php';
+    // public $indexPage = 'index.php';
+    public $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------

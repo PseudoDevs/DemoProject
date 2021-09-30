@@ -23,7 +23,8 @@ $(function () {
 			'copy', 'csv', 'excel', 'pdf', 'print'
            
 		],
-        responsive: true
+        responsive: true,
+        "bSort" : false
 	} );
 	
 	$('#tickets').DataTable({

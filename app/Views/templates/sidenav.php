@@ -1,3 +1,9 @@
+<?php $session = \Config\Services::session();
+if(!$session->get('isUserLogin')){
+    // echo "<script> location.href='".base_url()."'; </script>";
+    echo "<script> location.href='/'; </script>";
+}
+?>
 <div class="wrapper">
 
   <header class="main-header">
@@ -24,9 +30,10 @@
             <ul class="dropdown-menu animated flipInX">
               <li class="user-body">
                 <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i> Profile</a>
-                <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a>
+                <!-- <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a> -->
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"><i class="ti-lock text-muted mr-2"></i> Logout</a>
+                <!-- <a class="dropdown-item" href="<?=base_url('logout')?>"><i class="ti-lock text-muted mr-2"></i> Logout</a> -->
+                <a class="dropdown-item" href="/logout"><i class="ti-lock text-muted mr-2"></i> Logout</a>
               </li>
             </ul>
           </li>
@@ -42,11 +49,11 @@
 
       <div class="user-profile">
         <div class="ulogo">
-          <a href="index.html">
+          <a href="/admin/dashboard">
             <!-- logo for regular state and mobile devices -->
             <div class="d-flex align-items-center justify-content-center">
-              <img src="images/logo-dark.png" alt="">
-              <h3><b>Assistance</b> Dashboard</h3>
+              <img src="/images/logo-dark.png" alt="">
+              <h5><b>Tulong Manilenyo</b> Tapalodo</h5>
             </div>
           </a>
         </div>
@@ -54,33 +61,76 @@
 
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">
-
         <li>
-          <a href="Dashboard">
+          <!-- <a href="<?//=base_url('admin/Dashboard')?>"> -->
+          <a href="/admin/dashboard">
             <i data-feather="sliders"></i>
-            <span>Dashboard</span>
+            <span>Tapalodo</span>
           </a>
         </li>
 
-        <li class="treeview">
-          <a href="#">
-            <i data-feather="users"></i>
-            <span>Citizens</span>
+          <li class="treeview">
+          <a href="#users">
+            <i data-feather="user"></i>
+            <span>Mga Gumagamit</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="citizenList"><i class="ti-more"></i>Citizen List</a></li>
-            <li><a href="citizenAdd"><i class="ti-more"></i>Add Citizen</a></li>
+            <li><a href="/admin/users"><i class="ti-more"></i>Listahan ng Gumagamit</a></li>
+            <li><a href="/admin/users/new"><i class="ti-more"></i>Magdagdag ng Gumagamit</a></li>
           </ul>
         </li>
 
+       
+
+        <li class="treeview">
+          <a href="#citizen">
+            <i data-feather="users"></i>
+            <span>Kalingkod</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/citizen"><i class="ti-more"></i>Mga Kalingkod</a></li>
+            <li><a href="/admin/citizen/new"><i class="ti-more"></i>Magdagdag ng Kalingkod</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#citizen">
+            <i data-feather="file-text"></i>
+            <span>Letra ng Garantiya</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/guarantee-letter"><i class="ti-more"></i>Mga Letra ng Garantiya</a></li>
+            <li><a href="/admin/guarantee-letter/new"><i class="ti-more"></i>Bagong Letra ng Garantiya</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#citizen">
+            <i data-feather="book"></i>
+            <span>Libing</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/burial"><i class="ti-more"></i>Listahan ng Nakalibing</a></li>
+            <!-- <li><a href="/admin/burial/new"><i class="ti-more"></i>Magdagdag ng Libing</a></li> -->
+          </ul>
+        </li>
 
         <li>
-          <a href="logout">
+          <a href="/logout">
             <i data-feather="log-out"></i>
-            <span>Log Out</span>
+            <span>Mag Log Out</span>
           </a>
         </li>
 

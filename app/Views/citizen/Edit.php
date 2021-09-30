@@ -1,6 +1,5 @@
 <?php echo view('templates/header') ?>
 
-
 <body class="hold-transition light-skin sidebar-mini theme-primary">
 
     <?php echo view('templates/sidenav') ?>
@@ -12,7 +11,7 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <p class="page-title"><a href="citizenList"><i class="fa fa-arrow-left"></i> Back to List Citizen</a></p>
+                        <p class="page-title"><a href="/admin/citizen"><i class="fa fa-arrow-left"></i> Back to List Citizen</a></p>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
@@ -25,6 +24,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -36,53 +36,53 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col">
-                                    <form novalidate>
+                                    <form action="/admin/citizen/update" method="post">
+             
                                         <!-- THIS IS THE START FORM  -->
+                                        <input type="hidden" value="<?=$citizen['id']?>" name="citizen_id">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <h5> Precint Number <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="precintNumber" class="form-control" required data-validation-required-message="This field is required">
+                                                        <input type="text" value="<?=$citizen['precintNumber']?>" name="precintNumber" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <h5> First Name <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="firstName" class="form-control" required data-validation-required-message="This field is required">
+                                                <div class="form-row">   
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <h5> First Name <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['firstname']?>" name="firstname" class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <h5> Last Name <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['lastname']?>" name="lastname" class="form-control" required    data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <h5> Last Name <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="lastName" class="form-control" required data-validation-required-message="This field is required">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5> Nickname <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="nickName" class="form-control" required data-validation-required-message="This field is required">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5> Address <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="address" class="form-control" required data-validation-required-message="This field is required">
-                                                    </div>
-                                                </div>
-
+                                                
                                                 <div class="form-group">
                                                     <h5> Gender <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="gender" id="select" required class="form-control">
-                                                            <option value="">Select Gender</option>
-                                                            <option value="Male">Male</option>
+                                                        <select name="gender" id="gender" required class="form-control">
+                                                            
+                                                            <?php  if ($citizen['gender'] == "Male") {?>
+                                                            <option value="<?=$citizen['gender']?>" selected ><?=$citizen['gender']?></option>
                                                             <option value="Female">Female</option>
-        
+                                                            <?php }
+                                                                else{?>
+                                                            <option value="<?=$citizen['gender']?>" selected ><?=$citizen['gender']?></option>
+                                                            <option value="Male">Male</option>
+
+                                                            <?php }?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -90,51 +90,80 @@
                                                 <div class="form-group">
                                                     <h5> Birthday <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="date" name="birthDay" class="form-control" required data-validation-required-message="This field is required">
+                                                        <input type="date" value="<?=$citizen['birthday']?>" name="birthday" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
-
-                                                <h3> Assistance Info </h3>
-
-                                                <div class="form-group">
-                                                    <h5> Assistance Description <span class="text-danger">*</span></h5>
+                                                <div class="form-row">   
+                                                   
+                                                   <div class="col">
+                                                   <div class="form-group">
+                                                    <h5> Nickname</h5>
                                                     <div class="controls">
-                                                        <textarea name="assistanceDescription" class="form-control" required data-validation-required-message="This field is required"></textarea>
+                                                        <input type="text" value="<?=$citizen['nickname']?>"  name="nickName" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
-
-
-                                                <div class="form-group">
-                                                    <h5> Assistance Type <span class="text-danger">*</span></h5>
+                                                   </div>
+                                                   <div class="col">
+                                                   <div class="form-group">
+                                                    <h5> Mobile Number: <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="gender" id="select" required class="form-control">
-                                                            <option value="">Select Assistance</option>
-                                                            <option value="Male">Medical</option>
-                                                            <option value="Female">Cash</option>
-        
-                                                        </select>
+                                                        <input type="text"  value="<?=$citizen['contactNumber']?>" name="mobile" maxlength="11" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
-
+                                                   </div>
+                                               </div>
+                                               
                                                 <div class="form-group">
-                                                    <h5> Assisted By <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="assistedBy" class="form-control" required data-validation-required-message="This field is required">
+                                                            <h5>Unit/Building/House Number, Street Number or Street Name <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input  value="<?=$citizen['address']?>" type="text" name="address" class="form-control" required     data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                <!-- <div class="form-row">   
+                                                   
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <h5> District: <span class="text-danger">*</span></h5>'
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['district']?>" name="city" class="form-control" required    data-validation-required-message="This field is required">
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                  
+                                                    <div class="col">
+                                                    <div class="form-group">
+                                                            <h5> Barangay: <span class="text-danger">*</span></h5>
+                                   
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['district']?>" name="barangay" class="form-control" required    data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="form-row">   
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <h5> District:<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['district']?>" name="district" class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <h5> Barangay: <span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" value="<?=$citizen['barangay']?>" name="barangay" class="form-control" required    data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <h5> Assist Date <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="date" name="assistDate" class="form-control" required data-validation-required-message="This field is required">
-                                                    </div>
                                                 </div>
-
-
-
-
+                                                </div>
                                                 <div class="text-xs-right">
-                                                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                                                    <input type="submit" class="btn btn-block btn-primary" value="Submit">
+                                           
                                                 </div>
                                     </form>
 
@@ -147,11 +176,12 @@
                     </div>
                 </div>
 
-                <!-- Vendor JS -->
-                <?= script_tag('js/vendors.min.js'); ?>
-                <?= script_tag('assets/icons/feather-icons/feather.min.js'); ?>
-                <?= script_tag('assets/vendor_components/datatable/datatables.min.js'); ?>
-                <?= script_tag('js/pages/data-table.js'); ?>
-
-                <!-- Sunny Admin App -->
-                <?= script_tag('js/template.js'); ?>
+                <script src="/js/vendors.min.js"></script>
+                <script src="/assets/icons/feather-icons/feather.min.js"></script>
+                <script src="/assets/vendor_components/datatable/datatables.min.js"></script>
+                <script src="/js/pages/data-table.js"></script>
+                <script src="/js/template.js"></script>
+                <script src="/js/Validation.js"></script>
+                <script src="/js/pages/dashboard.js"></script>
+                <!-- <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script> -->
+            

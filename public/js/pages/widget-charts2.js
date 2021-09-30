@@ -251,25 +251,25 @@ $( document ).ready(function() {
 	if( $('#bar-chart2').length > 0 ){
 		var ctx2 = document.getElementById("bar-chart2").getContext("2d");
 		var data2 = {
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			labels: ["January", "February", "March", "April", "May", "June", "July","August","September","November","December"],
 			datasets: [
 				{
 					label: "My First dataset",
 					backgroundColor: "#689f38",
 					borderColor: "#689f38",
-					data: [15, 20, 70, 51, 36, 85, 50]
+					data: [15, 20, 70, 51, 36, 85, 50, 51, 36, 85, 50]
 				},
 				{
 					label: "My Second dataset",
 					backgroundColor: "#38649f",
 					borderColor: "#38649f",
-					data: [28, 48, 40, 19, 86, 27, 90]
+					data: [28, 48, 40, 19, 86, 27, 90,51, 36, 85, 50]
 				},
 				{
 					label: "My Third dataset",
 					backgroundColor: "#389f99",
 					borderColor: "#389f99",
-					data: [8, 28, 50, 29, 76, 77, 40]
+					data: [8, 28, 50, 29, 76, 77, 40,51, 36, 85, 50]
 				}
 			]
 		};

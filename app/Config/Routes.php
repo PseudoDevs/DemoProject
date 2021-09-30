@@ -21,7 +21,8 @@ $routes->setDefaultController('Login');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
+// $routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -31,8 +32,64 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Login::index');
+// $routes->get('/admin/citizen/edit/(:any)', 'Admin/citizenEdit::loadCitizen/$1');
 
+$routes->get('/', 'Login::index');
+$routes->add('/signin', 'Login::signin');
+$routes->add('/logout', 'Login::logout');
+$routes->get('/admin/dashboard', 'Admin/Dashboard::index');
+$routes->get('/dashboard/assistancedata', 'Admin/Dashboard::assistanceData');
+$routes->get('/dashboard/assistanceBarChart', 'Admin/Dashboard::assistanceBarChart');
+
+// users
+$routes->add('/admin/users', 'Admin/UserController::index');
+$routes->add('/admin/users/new', 'Admin/UserController::userAdd');
+$routes->post('/admin/users/add', 'CrudUser::addUser');
+$routes->post('/admin/users/update', 'CrudUser::updateUser');
+$routes->get('/admin/user/delete/(:any)', 'CrudUser::deleteuser/$1');
+$routes->get('/admin/user/edit/(:any)', 'CrudUser::loaduser/$1');
+$routes->get('/admin/user/view/(:any)', 'CrudUser::viewuser/$1');
+// $routes->get('/admin/user/delete/(:any)/(:any)', 'CrudUser::deleteuser/$1/$2');
+
+// citizen
+$routes->add('/admin/citizen', 'Admin/CitizenController::index');
+$routes->add('/admin/citizen/new', 'Admin/CitizenController::citizenAdd');
+$routes->add('/admin/citizen/add', 'CrudCitizen::addCitizen');
+$routes->add('/admin/citizen/update', 'CrudCitizen::updatecitizen');
+$routes->get('/admin/citizen/delete/(:any)', 'CrudCitizen::deletecitizen/$1');
+$routes->get('/admin/citizen/edit/(:any)', 'CrudCitizen::loadcitizen/$1');
+$routes->get('/admin/citizen/view/(:any)', 'CrudCitizen::viewcitizen/$1');
+
+// guarantee-letter
+$routes->add('/admin/guarantee-letter', 'Admin/GuaranteeLetterController::index');
+$routes->add('/admin/guarantee-letter/new', 'Admin/GuaranteeLetterController::guaranteeAdd');
+$routes->post('/admin/guarantee-letter/add', 'CrudGuaranteeLetter::addGuarantee');
+$routes->post('/admin/guarantee-letter/update', 'CrudGuaranteeLetter::updateGuarantee');
+$routes->get('/admin/guarantee-letter/delete/(:any)', 'CrudGuaranteeLetter::deleteGuarantee/$1');
+$routes->get('/admin/guarantee-letter/edit/(:any)', 'CrudGuaranteeLetter::loadGuarantee/$1');
+$routes->get('/admin/guarantee-letter/view/(:any)', 'CrudGuaranteeLetter::viewGuarantee/$1');
+
+// burial
+$routes->add('/admin/burial', 'CrudBurial::index');
+$routes->post('/admin/burial/add', 'CrudBurial::addBurial');
+$routes->post('/admin/burial/update', 'CrudBurial::updateBurial');
+$routes->get('/admin/burial/delete/(:any)', 'CrudBurial::deleteBurial/$1');
+$routes->get('/admin/burial/edit/(:any)', 'CrudBurial::loadBurial/$1');
+$routes->get('/admin/burial/view/(:any)', 'CrudBurial::viewBurial/$1');
+
+// assist
+$routes->add('/admin/assist/add', 'CrudAssistance::addAssist');
+$routes->get('/admin/citizen/(:any)/assist/add', 'CrudAssistance::addAssistForm/$1');
+$routes->get('/admin/assist/delete/(:any)/(:any)', 'CrudAssistance::deleteAssist/$1/$2');
+
+// AssistanceType
+$routes->add('/admin/assist-type/new', 'CrudAssistance::newAssistType');
+$routes->post('/admin/assist-type/add', 'CrudAssistance::addAssistType');
+$routes->get('/admin/assist-type/edit/(:any)', 'CrudAssistance::editAssistType/$1');
+$routes->post('/admin/assist-type/update', 'CrudAssistance::updateAssistanceType');
+$routes->get('/admin/assist-type/delete/(:any)', 'CrudAssistance::deleteAssistType/$1');
+
+// $routes->add('/admin/assist/add/testAdd', 'CrudAssistance::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

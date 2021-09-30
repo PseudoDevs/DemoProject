@@ -5,14 +5,13 @@
 
     <?php echo view('templates/sidenav') ?>
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="container-full">
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-                    <div class="col-xl-3 col-6">
+                    <div class="col-xl-3 col">
                         <div class="box overflow-hidden pull-up hov-rs">
                             <div class="box-body text-center">
                                 <div class="icon bg-primary-light rounded w-60 h-60 mx-auto">
@@ -20,12 +19,12 @@
                                 </div>
                                 <div>
                                     <p class="text-mute mt-20 mb-0 font-size-16">Total Citizens</p>
-                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format(3400); ?></h3>
+                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format($TotalCitizen); ?></h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-6">
+                    <div class="col-xl-3 col">
                         <div class="box overflow-hidden pull-up hov-rs">
                             <div class="box-body text-center">
                                 <div class="icon bg-warning-light rounded w-60 h-60 mx-auto">
@@ -33,12 +32,12 @@
                                 </div>
                                 <div>
                                     <p class="text-mute mt-20 mb-0 font-size-16">New Citizens</p>
-                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format(150); ?> </h3>
+                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format($NewCitizen); ?> </h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-6">
+                    <div class="col-xl-2 col">
                         <div class="box overflow-hidden pull-up hov-rs">
                             <div class="box-body text-center">
                                 <div class="icon bg-info-light rounded w-60 h-60 mx-auto">
@@ -46,12 +45,12 @@
                                 </div>
                                 <div>
                                     <p class="text-mute mt-20 mb-0 font-size-16">Newly Assist</p>
-                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format(3400); ?></h3>
+                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format($NewAssist); ?></h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-6">
+                    <div class="col-xl-2 col">
                         <div class="box overflow-hidden pull-up hov-rs">
                             <div class="box-body text-center">
                                 <div class="icon bg-danger-light rounded w-60 h-60 mx-auto">
@@ -59,12 +58,120 @@
                                 </div>
                                 <div>
                                     <p class="text-mute mt-20 mb-0 font-size-16">Admins</p>
-                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format(1); ?></h3>
+                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format($Admins); ?></h3>
                                 </div>
                             </div>
                         </div>
-                    </div>            
-                </div>
+                    </div>   
+
+                    <div class="col-xl-2 col">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body text-center">
+                                <div class="icon bg-warning-light rounded w-60 h-60 mx-auto">
+                                    <i class="text-warning mr-0 font-size-24 mdi mdi-account-settings-variant"></i>
+                                </div>
+                                <div>
+								
+                                    <p class="text-mute mt-20 mb-0 font-size-16">Users</p>
+                                    <h3 class="text-dark mb-0 font-weight-500"><?php echo number_format($Users); ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+
+    <?php 
+    // $begin = new DateTime( "2003-09-03" );
+    // $end   = new DateTime( "2015-07-09" );
+    
+    // for($i = $begin; $i <= $end; $i->modify('+1 day')){
+    //     echo $i->format("F Y-m-d");
+    // }
+    ?>
+
+                    <section class="content">
+		  <div class="row">
+				<!-- col -->
+				<div class="col-md-6 col-lg-6 col-sm-6">
+					<div class="box">
+						<div class="box-body">
+							<h4 class="box-title">Bar Chart</h4>
+                   
+                           
+							<div>
+								<!-- <div class="form-row">
+								<div class="col-md-6">
+                                         <div class="form-group">
+                                            <p> Petsa mula: <span class="text-danger">*</span></p>
+                                            <div class="controls">
+                                            <input type="date" value="<?=(date('Y') - 18)."-".date('m-d')?>" id="dateFrom" name="dateFrom" class="form-control" required data-validation-required-message="This field is required">
+                                            </div>
+                                        </div>
+                                 </div>
+								 <div class="col-md-6">
+                                         <div class="form-group">
+                                            <p> Petsa sa: <span class="text-danger">*</span></p>
+                                            <div class="controls">
+                                            <input type="date" value="<?=date('Y-m-d')?>" name="dateTo"  id="dateTo" class="form-control" required data-validation-required-message="This field is required">
+                                            </div>
+                                        </div>
+                                 </div>
+								</div>
+                                    <div class="form-group">
+                                        <p> Uri ng Pagtulong: <span class="text-danger">*</span></p>
+                                        <div class="controls">
+                                            <select name="assistance_type" id="assistance_type" required class="form-control">
+                                            <option value="" selected disabled hidden>Pumili ng Uri ng Pagtulong</option>
+                                            <option value="Medical">Medical</option>
+                                                <option value="Legal">Legal</option>
+                                                <option value="Burial">Burial</option>
+                                                <option value="Financial">Financial</option>
+                                                <option value="Educational">Educational</option>
+                                                <option value="Wheelchair">Wheelchair</option>
+                                                <option value="Oxygen tank">Oxygen tank</option>
+                                                <option value="Quadcane">Quadcane</option>
+                                                <option value="Single cane">Single cane</option>
+                                                <option value="Walker">Walker</option>
+                                                <option value="Hearing aid">Hearing aid</option>
+                                                <option value="Saklay">Saklay</option>
+                                                <option value="Nebulizer">Nebulizer</option>
+                                                <option value="Manual Blood pressure kit">Manual Blood pressure kit</option>
+                                                <option value="Oxymeter">Oxymeter</option>
+                                                <option value="Thermal scanner">Thermal scanner</option>
+                                                <option value="Reading glass">Reading glass</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div> -->
+							
+								<canvas id="assist-bar-chart" height="250"></canvas>
+							</div>
+						</div>
+					</div>
+
+                    
+				</div>
+				<!-- /col -->
+				<!-- col -->
+		
+				<!-- col -->
+				<div class="col-md-6 col-lg-6 col-sm-6">
+					<div class="box">
+						<div class="box-body">
+							<h4 class="box-title">Pie Chart</h4>
+							<div>
+								<canvas id="assist-pie-chart" height="250"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /col -->
+    
+
+		  </div>
+		  <!-- /.row -->
+
+		</section>
+
             </section>
             <!-- /.content -->
         </div>
@@ -72,12 +179,126 @@
     <!-- /.content-wrapper -->
 
     	<!-- Vendor JS -->
-        <?= script_tag('js/vendors.min.js'); ?>
-    <?= script_tag('assets/icons/feather-icons/feather.min.js'); ?>
-	<?= script_tag('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js'); ?>
-	<?= script_tag('assets/vendor_components/apexcharts-bundle/irregular-data-series.js'); ?>
-	<?= script_tag('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js'); ?>
-	
-	<!-- Sunny Admin App -->
-	<?= script_tag('js/template.js'); ?>
-	<?= script_tag('js/pages/dashboard.js'); ?>
+    
+
+    <script src="/js/vendors.min.js"></script>
+    <script src="/assets/icons/feather-icons/feather.min.js"></script>
+    <script src="/assets/vendor_components/chart.js-master/Chart.min.js"></script>
+	<script src="/js/pages/widget-charts2.js"></script>
+    <script src="/js/template.js"></script>
+    <script src="/js/pages/dashboard.js"></script>
+
+  
+
+    <script>
+
+function loadBarChart() {
+    new Chart(document.getElementById("assist-bar-chart"), {
+		type: 'bar',
+		data:{
+		  labels:  <?=json_encode($assistance_label)?>,
+		  datasets: [
+			{
+			  label: "Dataset",
+			  backgroundColor: ["#689f38", "#38649f","#389f99","#ee1044","#ff8f00"],
+			  data: <?=json_encode($assistance_data)?>
+			}
+		  ]
+		},
+		options: {
+		  legend: { display: false },
+		  title: {
+			display: true,
+			text: 'Assistance Data'
+		  }
+		}
+	});
+}
+
+		$(document).ready(function(){
+            loadBarChart();
+            // alert($("#dateFrom").val() +" *-* " + $("#dateTo").val());
+
+
+            $('#dateFrom').change(function(){
+                var dateFrom = $(this).val();
+                var dateTo = $('#dateTo').val();
+                var assistance_type = $('#assistance_type').val();
+                var status = '';
+                
+                $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
+//                     var paragraph = document.getElementById("test");
+// var text = document.createTextNode("This just got added");
+// status = data;
+// paragraph.appendChild(status);
+
+
+				    alert(data);
+			    });
+
+            });
+
+
+            $('#dateTo').change(function(){
+                var dateFrom = $('#dateFrom').val();
+                var dateTo = $(this).val();
+                var assistance_type = $('#assistance_type').val();
+                // alert(optionValue);
+                $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
+				    alert(data);
+			    });
+
+            });
+
+            $('#assistance_type').change(function(){
+                var assistance_type = $(this).val();
+                var dateFrom = $('#dateFrom').val();
+                var dateTo = $('#dateTo').val();
+                // alert(optionValue);
+                $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
+				    alert(data);
+			    });
+
+            });
+			// $.post("/dashboard/assistancedata",{assitance:"type", test:"test"},function(data) {
+			// 	alert(data);
+			// });
+			// var assistData = 0;
+			
+
+     // JSON
+	 if( $('#assist-pie-chart').length > 0 ){
+		var ctx6 = document.getElementById("assist-pie-chart").getContext("2d");
+		var data6 = <?=json_encode($assistance_pie)?>;
+		var pieChart  = new Chart(ctx6,{
+			type: 'pie',
+			data: data6,
+			options: {
+				animation: {
+					duration:	3000
+				},
+				responsive: true,
+				legend: {
+					labels: {
+					fontFamily: "Nunito Sans",
+					fontColor:"#878787"
+					}
+				},
+				tooltip: {
+					backgroundColor:'rgba(33,33,33,1)',
+					cornerRadius:0,
+					footerFontFamily:"'Nunito Sans'"
+				},
+				elements: {
+					arc: {
+						borderWidth: 0
+					}
+				}
+			}
+		});
+	}
+
+  
+		});
+    </script>
+    

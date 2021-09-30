@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Assistance Management System</title>
 
-    <meta name="robots" content="">
+    <!-- logo icon -->
+    <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-256/customer-support-2666301-2213464.png">
 
+    <meta name="robots" content="">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/vendors_css.css">
+    <link rel="stylesheet" href="/css/skin_color.css">
     <!-- Simplebar -->
-    <?= link_tag('css/vendors_css.css')?> 
     <!-- App CSS -->
 
-    <?= link_tag('css/style.css')?> 
-    <?= link_tag('css/skin_color.css')?>
 
 </head>
