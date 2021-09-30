@@ -48,7 +48,7 @@
                                                         <div class="form-group">
                                                             <h5> First Name <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <input type="text" name="firstname" class="form-control" required data-validation-required-message="This field is required">
+                                                                <input type="text" name="firstname" class="form-control" value="<?= $guarantee['firstname']?>" required data-validation-required-message="This field is required">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -57,21 +57,31 @@
                                                         <div class="form-group">
                                                             <h5> Last Name <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <input type="text" name="lastname" class="form-control" required    data-validation-required-message="This field is required">
+                                                                <input type="text" name="lastname" class="form-control" value="<?= $guarantee['lastname']?>" required    data-validation-required-message="This field is required">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-row">   
-                                                    <div class="col">
+                                                <div class="col">
                                                         <div class="form-group">
                                                         <h5> Gender <span class="text-danger">*</span></h5>
                                                             <div class="controls">
                                                                 <select name="gender" id="gender" required class="form-control">
                                                                     <option value="" selected disabled hidden>Select Gender</option>
-                                                                    <option value="Male">Male</option>
-                                                                    <option value="Female">Female</option>
+
+
+                                                                    <?php  if ($guarantee['gender'] == "Male") {?>
+                                                            <option value="<?=$guarantee['gender']?>" selected ><?=$guarantee['gender']?></option>
+                                                            <option value="Female">Female</option>
+                                                            <?php }
+                                                                else{?>
+                                                            <option value="<?=$guarantee['gender']?>" selected ><?=$guarantee['gender']?></option>
+                                                            <option value="Male">Male</option>
+
+                                                            <?php }?>
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -81,7 +91,7 @@
                                                     <div class="form-group">
                                                         <h5> Birthday <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="date" value="<?=(date('Y') - 18)."-".date('m-d')?>" name="birthday"    class="form-control" required data-validation-required-message="This field is required">
+                                                            <input type="date" value="<?= $guarantee['birthday']?>" name="birthday"    class="form-control" required data-validation-required-message="This field is required">
                                                         </div>
                                                     </div>
                                                    </div>
@@ -91,7 +101,7 @@
                                                <div class="form-group">
                                                     <h5> Mobile Number: <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="contactNumber" maxlength="11" class="form-control" required data-validation-required-message="This field is required">
+                                                        <input type="text" name="contactNumber" value="<?= $guarantee['contactNumber']?>" maxlength="11" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
                                                 <div class="form-row">   
@@ -99,7 +109,7 @@
                                                         <div class="form-group">
                                                             <h5> District:<span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <input type="text" placeholder="District"   name="district" class="form-control" required data-validation-required-message="This field is required">
+                                                                <input type="text" placeholder="District" value="<?= $guarantee['district']?>"   name="district" class="form-control" required data-validation-required-message="This field is required">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -108,7 +118,7 @@
                                                         <div class="form-group">
                                                             <h5> Taga Barangay: <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <input type="text" placeholder="Barangay" name="barangay" class="form-control" required    data-validation-required-message="This field is required">
+                                                                <input type="text" placeholder="Barangay" value="<?= $guarantee['barangay']?>" name="barangay" class="form-control" required    data-validation-required-message="This field is required">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -116,7 +126,7 @@
                                                 <div class="form-group">
                                                     <h5> Amount <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="amount" class="form-control" required data-validation-required-message="This field is required">
+                                                        <input type="text" name="amount" value="<?= $guarantee['amount']?>" class="form-control" required data-validation-required-message="This field is required">
                                                     </div>
                                                 </div>
                                          
@@ -124,11 +134,10 @@
                                                 <div class="form-group">
                                                         <h5>Diagnosis <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <!-- <input type="text" name="diagnosis" class="form-control" required    data-validation-required-message="This field is required"> -->
                                                             <select name="diagnosis" id="diagnosis" required class="form-control">
-                                                                <option value="" selected disabled hidden>Select Diagnosis</option>
+                                                                <option value="<?=$guarantee['diagnosis']?>" selected hidden><?=$guarantee['diagnosis']?></option>
                                                                 <option value="Pneumonia">Cancer</option>
-                                                                <option value="Tuberculosis">Heart A    ilment</option>
+                                                                <option value="Tuberculosis">Heart Ailment</option>
                                                                 <option value="Malaria">Blood Related</option>
                                                             </select>
                                                         </div>
@@ -137,10 +146,10 @@
                                                 <div class="form-group">
                                                     <h5>Hospital <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <!-- <input type="text" name="address" class="form-control" required     data-validation-required-message="This field is required"> -->
+                                            
                                                         <select name="hospital" id="hospital" required class="form-control">
-                                                            <option value="" selected disabled hidden>Select Hospital</option>
-                                                                <option value="NKTI">NKTI</option>
+                                                            <option value="<?=$guarantee['hospital']?>" selected hidden><?=$guarantee['hospital']?></option>
+                                                            <option value="NKTI">NKTI</option>
                                                                 <option value="Lung Center">Lung Center</option>
                                                                 <option value="San Lazaro Hospital">San Lazaro Hospital</option>
                                                                 <option value="Heart Center of the Phil">Heart Center of the Phil</option>
@@ -153,6 +162,7 @@
                                                                 <option value="Mary Chilles Hospital">Mary Chilles Hospital</option>
                                                                 <option value="Philippine Children Memorial Center">Philippine Children Memorial Center</option>
                                                                 <option value="Orthopedics">Orthopedics</option>
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -162,7 +172,7 @@
                                                     <div class="controls">
                                                         <!-- <input type="text" name="address" class="form-control" required     data-validation-required-message="This field is required"> -->
                                                         <select name="educational" id="educational" required class="form-control">
-                                                            <option value="" selected disabled hidden>Select Year Level</option>
+                                                            <option value="<?=$guarantee['educational']?>" selected hidden><?=$guarantee['educational']?></option>
                                                                 <option value="Gradeschool">Gradeschool</option>
                                                                 <option value="Highschool">Highschool</option>
                                                                 <option value="Senior HS">Senior HS</option>
@@ -170,13 +180,14 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <!-- display as value data from database -->
 
                                                 <div class="form-group">
                                                     <h5>School <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <!-- <input type="text" name="address" class="form-control" required     data-validation-required-message="This field is required"> -->
                                                         <select name="school" id="school" required class="form-control">
-                                                            <option value="" selected disabled hidden>Select Type of School</option>
+                                                            <option value="<?=$guarantee['educational']?>" selected hidden><?=$guarantee['educational']?></option>
                                                                 <option value="Private">Private</option>
                                                                 <option value="Public">Public</option>  
                                                         </select>

@@ -58,7 +58,7 @@ class Dashboard extends BaseController
             ),
         );
 
-        shuffle($color);
+        // shuffle($color);
         $data['assistance_pie'] = $dataChart;
         $data['assistance_label'] = $type;
         $data['assistance_data'] =$countForEveryCategory;
@@ -84,8 +84,7 @@ class Dashboard extends BaseController
             $type = array();
             $countForEveryCategory = array();
             $color = array();
-       
-
+    
             foreach ($query as $assist) {
                 $type[] = $assist->assistance_type;
                 $countForEveryCategory[] = $builder->where('assistance_type', strval($assist->assistance_type))->countAllResults();
@@ -110,20 +109,38 @@ class Dashboard extends BaseController
 
     public function assistanceBarChart()
     {
- 
+      
         $begin = new DateTime( $_GET['dateFrom'] );
         $end = new DateTime( $_GET['dateTo'] );
-        $monthYear = array();
 
-        $count = 0;
+        $monthYear = array();
+       $dataAssistance = array();
+        // $sql = "SELECT * FROM tblassist WHERE assistance_type  = ? AND created_at >= ? AND created_at <= ?";
+        $sql = "SELECT * FROM tblassist WWERE assistance_type '%?%'  AND created_at LIKE '%?%'";
+        // $query = $this->db->query($sql, [$_GET['assistance_type'],  $_GET['dateFrom'],  $_GET['dateTo']])->getResult();
+        // $count = 0;
+        $builder = $this->db->table("tblassist");
+     
         for($i = $begin; $i <= $end; $i->modify('+1 day')){
             if (in_array($i->format("F Y"), $monthYear)) {
                 continue;
             }
+           
+            $dataAssistance[] = $builder->where('assistance_type', $_GET['assistance_type'])->like('created_at', $i->format("Y-m"), 'both')->countAllResults(); 
+            // $query = $this->db->query($sql, [$_GET['assistance_type'],  $i->format("Y-m-d")])->getResult();
             $monthYear[] = $i->format("F Y");
+            // $monthYear[] = $i->format("Y-m-d");
         }
-    //   json_encode($monthYear);
-    print_r($_GET);
+
+        $data = array(
+            "month" => $monthYear,
+            "data_assistance" => $dataAssistance,
+
+        );
+        // print_r( $begin." ".$end);
+        // print_r($query);
+        print_r(json_encode($data));
+    // print_r($data);
     }
 
 }

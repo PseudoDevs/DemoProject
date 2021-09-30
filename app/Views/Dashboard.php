@@ -79,34 +79,24 @@
                         </div>
                     </div>   
 
-    <?php 
-    // $begin = new DateTime( "2003-09-03" );
-    // $end   = new DateTime( "2015-07-09" );
-    
-    // for($i = $begin; $i <= $end; $i->modify('+1 day')){
-    //     echo $i->format("F Y-m-d");
-    // }
-    ?>
 
                     <section class="content">
 		  <div class="row">
 				<!-- col -->
-				<div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="col-md-10 col-lg-6 col-sm-10">
 					<div class="box">
 						<div class="box-body">
 							<h4 class="box-title">Bar Chart</h4>
-                   
-                           
 							<div>
-								<!-- <div class="form-row">
-								<div class="col-md-6">
-                                         <div class="form-group">
-                                            <p> Petsa mula: <span class="text-danger">*</span></p>
-                                            <div class="controls">
-                                            <input type="date" value="<?=(date('Y') - 18)."-".date('m-d')?>" id="dateFrom" name="dateFrom" class="form-control" required data-validation-required-message="This field is required">
+								<div class="form-row">
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <p> Petsa mula: <span class="text-danger">*</span></p>
+                                                <div class="controls">
+                                                <input type="date" value="<?= date('Y-m-d', strtotime("-6 months", strtotime(date('Y-m-d'))))?>" id="dateFrom" name="dateFrom" class="form-control" required data-validation-required-message="This field is required">
+                                                </div>
                                             </div>
-                                        </div>
-                                 </div>
+                                    </div>
 								 <div class="col-md-6">
                                          <div class="form-group">
                                             <p> Petsa sa: <span class="text-danger">*</span></p>
@@ -115,13 +105,14 @@
                                             </div>
                                         </div>
                                  </div>
-								</div>
+							
+                                <div class="col-md">
                                     <div class="form-group">
                                         <p> Uri ng Pagtulong: <span class="text-danger">*</span></p>
                                         <div class="controls">
                                             <select name="assistance_type" id="assistance_type" required class="form-control">
-                                            <option value="" selected disabled hidden>Pumili ng Uri ng Pagtulong</option>
-                                            <option value="Medical">Medical</option>
+                                                <option value="" selected disabled hidden>Pumili ng Uri ng Pagtulong</option>
+                                                <option value="Medical">Medical</option>
                                                 <option value="Legal">Legal</option>
                                                 <option value="Burial">Burial</option>
                                                 <option value="Financial">Financial</option>
@@ -138,11 +129,11 @@
                                                 <option value="Oxymeter">Oxymeter</option>
                                                 <option value="Thermal scanner">Thermal scanner</option>
                                                 <option value="Reading glass">Reading glass</option>
-                                                
                                             </select>
                                         </div>
-                                    </div> -->
-							
+                                    </div>
+                                </div>
+    </div>
 								<canvas id="assist-bar-chart" height="250"></canvas>
 							</div>
 						</div>
@@ -150,11 +141,8 @@
 
                     
 				</div>
-				<!-- /col -->
-				<!-- col -->
 		
-				<!-- col -->
-				<div class="col-md-6 col-lg-6 col-sm-6">
+				<div class="col-md-8 col-lg-6 col-sm-8">
 					<div class="box">
 						<div class="box-body">
 							<h4 class="box-title">Pie Chart</h4>
@@ -164,11 +152,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- /col -->
-    
-
+			
 		  </div>
-		  <!-- /.row -->
 
 		</section>
 
@@ -188,54 +173,68 @@
     <script src="/js/template.js"></script>
     <script src="/js/pages/dashboard.js"></script>
 
-  
-
     <script>
 
-function loadBarChart() {
-    new Chart(document.getElementById("assist-bar-chart"), {
-		type: 'bar',
-		data:{
-		  labels:  <?=json_encode($assistance_label)?>,
-		  datasets: [
-			{
-			  label: "Dataset",
-			  backgroundColor: ["#689f38", "#38649f","#389f99","#ee1044","#ff8f00"],
-			  data: <?=json_encode($assistance_data)?>
-			}
-		  ]
-		},
-		options: {
-		  legend: { display: false },
-		  title: {
-			display: true,
-			text: 'Assistance Data'
-		  }
-		}
-	});
-}
-
-		$(document).ready(function(){
-            loadBarChart();
-            // alert($("#dateFrom").val() +" *-* " + $("#dateTo").val());
-
+$(document).ready(function(){
+    var barchat = new Chart(document.getElementById("assist-bar-chart"), {
+	    	type: 'bar',
+	    	data:{
+	    	  labels:  <?=json_encode($assistance_label)?>,
+	    	  datasets: [
+	    		{
+	    		  label: "Data",
+	    		  backgroundColor: <?=json_encode($assistance_color)?>,
+	    		  data: <?=json_encode($assistance_data)?>
+	    		}
+	    	  ]
+	    	},
+	    	options: {
+	    	  legend: { display: false },
+	    	  title: {
+	    		display: true,
+	    		text: 'Assistance Data'
+	    	  }
+	    	}
+	    });
+       
 
             $('#dateFrom').change(function(){
                 var dateFrom = $(this).val();
                 var dateTo = $('#dateTo').val();
                 var assistance_type = $('#assistance_type').val();
-                var status = '';
                 
+                if (assistance_type != null) {
                 $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
-//                     var paragraph = document.getElementById("test");
-// var text = document.createTextNode("This just got added");
-// status = data;
-// paragraph.appendChild(status);
 
+                    var date = JSON.parse(data);
+                    var chartdata = {
+                        labels: date.month,
+                        datasets: [
+                            {
+                                label: assistance_type,
+                                backgroundColor: '#49e2ff',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: date.data_assistance
+                            }
+                        ]
+                    };
 
-				    alert(data);
+                     barchat.destroy();
+                     barchat = new Chart(document.getElementById("assist-bar-chart"), {
+	                	type: 'bar',
+	                	data: chartdata,
+	                	options: {
+	                	  legend: { display: false },
+	                	  title: {
+	                		display: true,
+	                		text: assistance_type
+	                	  }
+	                	}
+	                });
 			    });
-
+                }
             });
 
 
@@ -243,10 +242,38 @@ function loadBarChart() {
                 var dateFrom = $('#dateFrom').val();
                 var dateTo = $(this).val();
                 var assistance_type = $('#assistance_type').val();
-                // alert(optionValue);
+                if (assistance_type != null) {
                 $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
-				    alert(data);
+
+                    var date = JSON.parse(data);
+                    var chartdata = {
+                        labels: date.month,
+                        datasets: [
+                            {
+                                label: assistance_type,
+                                backgroundColor: '#49e2ff',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: date.data_assistance
+                            }
+                        ]
+                    };
+
+                     barchat.destroy();
+                     barchat = new Chart(document.getElementById("assist-bar-chart"), {
+	                	type: 'bar',
+	                	data: chartdata,
+	                	options: {
+	                	  legend: { display: false },
+	                	  title: {
+	                		display: true,
+	                		text: assistance_type
+	                	  }
+	                	}
+	                });
 			    });
+                }
 
             });
 
@@ -254,17 +281,40 @@ function loadBarChart() {
                 var assistance_type = $(this).val();
                 var dateFrom = $('#dateFrom').val();
                 var dateTo = $('#dateTo').val();
-                // alert(optionValue);
+                if (assistance_type != null) {
                 $.get("/dashboard/assistanceBarChart",{ dateFrom: dateFrom, dateTo: dateTo, assistance_type:assistance_type }, function(data) {
-				    alert(data);
+
+                    var date = JSON.parse(data);
+                    var chartdata = {
+                        labels: date.month,
+                        datasets: [
+                            {
+                                label: assistance_type,
+                                backgroundColor: '#49e2ff',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: date.data_assistance
+                            }
+                        ]
+                    };
+
+                     barchat.destroy();
+                     barchat = new Chart(document.getElementById("assist-bar-chart"), {
+	                	type: 'bar',
+	                	data: chartdata,
+	                	options: {
+	                	  legend: { display: false },
+	                	  title: {
+	                		display: true,
+	                		text: assistance_type
+	                	  }
+	                	}
+	                });
 			    });
+                }
 
             });
-			// $.post("/dashboard/assistancedata",{assitance:"type", test:"test"},function(data) {
-			// 	alert(data);
-			// });
-			// var assistData = 0;
-			
 
      // JSON
 	 if( $('#assist-pie-chart').length > 0 ){
@@ -297,8 +347,6 @@ function loadBarChart() {
 			}
 		});
 	}
-
-  
-		});
+});
     </script>
     

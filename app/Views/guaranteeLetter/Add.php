@@ -129,7 +129,7 @@
                                                             <select name="diagnosis" id="diagnosis" required class="form-control">
                                                                 <option value="" selected disabled hidden>Select Diagnosis</option>
                                                                 <option value="Pneumonia">Cancer</option>
-                                                                <option value="Tuberculosis">Heart A    ilment</option>
+                                                                <option value="Tuberculosis">Heart Ailment</option>
                                                                 <option value="Malaria">Blood Related</option>
                                                             </select>
                                                         </div>
