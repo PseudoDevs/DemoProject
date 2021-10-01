@@ -59,6 +59,18 @@ class CrudAssistance extends BaseController
             echo "<script> location.href='/admin/citizen/view/".$citizen_slugs."'; </script>";
         }
     }
+    public function receiveAssist($id,$citizen_slugs)
+    {
+        $assist = new Assist();
+        $data = array(
+            'received_at' => date('Y-m-d', strtotime("+1 day", strtotime(date('Y-m-d'))))
+        );
+
+        if ($assist->update($id,$data)) {
+            // return redirect()->To(base_url('admin/citizen/view/'.$citizen_slugs));
+            echo "<script> location.href='/admin/citizen/view/".$citizen_slugs."'; </script>";
+        }
+    }
 
 
     

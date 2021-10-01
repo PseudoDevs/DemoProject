@@ -25,6 +25,9 @@ class Citizen extends Model
         'barangay',
         'gender',
         'birthday',
+        'civil_status',
+        'occupation',
+        'birthday',
         'slugs'
     ];
 

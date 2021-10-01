@@ -23,8 +23,6 @@ class GuaranteeLetter extends Model
         'amount',
         'diagnosis',
         'hospital',
-        'educational',
-        'school',
         'district',
         'barangay'
     ];

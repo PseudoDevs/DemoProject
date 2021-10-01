@@ -33,13 +33,14 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/admin/citizen/edit/(:any)', 'Admin/citizenEdit::loadCitizen/$1');
-
 $routes->get('/', 'Login::index');
 $routes->add('/signin', 'Login::signin');
 $routes->add('/logout', 'Login::logout');
 $routes->get('/admin/dashboard', 'Admin/Dashboard::index');
 $routes->get('/dashboard/assistancedata', 'Admin/Dashboard::assistanceData');
 $routes->get('/dashboard/assistanceBarChart', 'Admin/Dashboard::assistanceBarChart');
+$routes->get('/dashboard/guaranteeBarChart', 'Admin/Dashboard::guaranteeBarChart');
+$routes->get('/dashboard/educationalBarChart', 'Admin/Dashboard::educationalBarChart');
 
 // users
 $routes->add('/admin/users', 'Admin/UserController::index');
@@ -69,9 +70,19 @@ $routes->get('/admin/guarantee-letter/delete/(:any)', 'CrudGuaranteeLetter::dele
 $routes->get('/admin/guarantee-letter/edit/(:any)', 'CrudGuaranteeLetter::loadGuarantee/$1');
 $routes->get('/admin/guarantee-letter/view/(:any)', 'CrudGuaranteeLetter::viewGuarantee/$1');
 
+// guarantee-letter
+$routes->add('/admin/educational', 'CrudEducational::index');
+$routes->add('/admin/educational/new', 'CrudEducational::guaranteeAdd');
+$routes->post('/admin/educational/add', 'CrudEducational::addGuarantee');
+$routes->post('/admin/educational/update', 'CrudEducational::updateGuarantee');
+$routes->get('/admin/educational/delete/(:any)', 'CrudEducational::deleteGuarantee/$1');
+$routes->get('/admin/educational/edit/(:any)', 'CrudEducational::loadGuarantee/$1');
+$routes->get('/admin/educational/view/(:any)', 'CrudEducational::viewGuarantee/$1');
+
 // burial
 $routes->add('/admin/burial', 'CrudBurial::index');
 $routes->post('/admin/burial/add', 'CrudBurial::addBurial');
+$routes->add('/admin/burial/new', 'CrudBurial::newBurial');
 $routes->post('/admin/burial/update', 'CrudBurial::updateBurial');
 $routes->get('/admin/burial/delete/(:any)', 'CrudBurial::deleteBurial/$1');
 $routes->get('/admin/burial/edit/(:any)', 'CrudBurial::loadBurial/$1');
@@ -81,6 +92,7 @@ $routes->get('/admin/burial/view/(:any)', 'CrudBurial::viewBurial/$1');
 $routes->add('/admin/assist/add', 'CrudAssistance::addAssist');
 $routes->get('/admin/citizen/(:any)/assist/add', 'CrudAssistance::addAssistForm/$1');
 $routes->get('/admin/assist/delete/(:any)/(:any)', 'CrudAssistance::deleteAssist/$1/$2');
+$routes->get('/admin/assist/received/(:any)/(:any)', 'CrudAssistance::receiveAssist/$1/$2');
 
 // AssistanceType
 $routes->add('/admin/assist-type/new', 'CrudAssistance::newAssistType');
@@ -88,6 +100,8 @@ $routes->post('/admin/assist-type/add', 'CrudAssistance::addAssistType');
 $routes->get('/admin/assist-type/edit/(:any)', 'CrudAssistance::editAssistType/$1');
 $routes->post('/admin/assist-type/update', 'CrudAssistance::updateAssistanceType');
 $routes->get('/admin/assist-type/delete/(:any)', 'CrudAssistance::deleteAssistType/$1');
+
+
 
 // $routes->add('/admin/assist/add/testAdd', 'CrudAssistance::index');
 /*

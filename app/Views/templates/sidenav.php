@@ -78,8 +78,8 @@ if(!$session->get('isUserLogin')){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin/users"><i class="ti-more"></i>Listahan ng Gumagamit</a></li>
-            <li><a href="/admin/users/new"><i class="ti-more"></i>Magdagdag ng Gumagamit</a></li>
+            <li><a href="/admin/users"><i class="ti-more"></i>List of Users</a></li>
+            <li><a href="/admin/users/new"><i class="ti-more"></i>Add Users</a></li>
           </ul>
         </li>
 
@@ -94,36 +94,53 @@ if(!$session->get('isUserLogin')){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin/citizen"><i class="ti-more"></i>Mga Kalingkod</a></li>
-            <li><a href="/admin/citizen/new"><i class="ti-more"></i>Magdagdag ng Kalingkod</a></li>
+            <li><a href="/admin/citizen"><i class="ti-more"></i>Recipient List</a></li>
+            <li><a href="/admin/citizen/new"><i class="ti-more"></i>Add Recipient</a></li>
           </ul>
         </li>
 
         <li class="treeview">
           <a href="#citizen">
             <i data-feather="file-text"></i>
-            <span>Letra ng Garantiya</span>
+            <span>Guarantee Letter</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin/guarantee-letter"><i class="ti-more"></i>Mga Letra ng Garantiya</a></li>
-            <li><a href="/admin/guarantee-letter/new"><i class="ti-more"></i>Bagong Letra ng Garantiya</a></li>
+            <li><a href="/admin/guarantee-letter"><i class="ti-more"></i>Accredited Hospitals
+          </a></li>
+            <li><a href="/admin/guarantee-letter/new"><i class="ti-more"></i>Add Guarantee Letter</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#citizen">
+            <i data-feather="file-text"></i>
+            <span>Educational</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/admin/educational"><i class="ti-more"></i>List Educational
+          </a></li>
+            <li><a href="/admin/educational/new"><i class="ti-more"></i>Add Educational</a></li>
           </ul>
         </li>
 
         <li class="treeview">
           <a href="#citizen">
             <i data-feather="book"></i>
-            <span>Libing</span>
+            <span>Burial</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="/admin/burial"><i class="ti-more"></i>Listahan ng Nakalibing</a></li>
-            <!-- <li><a href="/admin/burial/new"><i class="ti-more"></i>Magdagdag ng Libing</a></li> -->
+            <li><a href="/admin/burial/new"><i class="ti-more"></i>Add Burial</a></li>
+     
           </ul>
         </li>
 

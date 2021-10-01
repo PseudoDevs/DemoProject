@@ -5,6 +5,7 @@
 
 	<?php echo view('templates/sidenav') ?>
 
+
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 		<div class="container-full">
@@ -12,13 +13,13 @@
 			<div class="content-header">
 				<div class="d-flex align-items-center">
 					<div class="mr-auto">
-						<h3 class="page-title">Mga Nakalibing</h3>
+						<h3 class="page-title">Educational</h3>
 						<div class="d-inline-block align-items-center">
 							<nav>
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
 									<li class="breadcrumb-item" aria-current="page">Admin</li>
-									<li class="breadcrumb-item active" aria-current="page">Mga Nakalibing</li>
+									<li class="breadcrumb-item active" aria-current="page">List of Educational</li>
 								</ol>
 							</nav>
 						</div>
@@ -30,7 +31,7 @@
 				<div class="row">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">Listahan ng mga Nakalibing</h3>
+							<h3 class="box-title">Educational</h3>
 							<h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
 						</div>
 						<div class="box-body">
@@ -39,32 +40,42 @@
 									<thead>
 										<tr>
 											<th>Firstname</th>
-											<th>LastName</th>
+											<th>Lastname</th>
+											<th>Birthday</th>
+											<th>Age</th>
+											<th>Gender</th>
+											<th>Contact Number</th>
 											<th>District</th>
 											<th>Barangay</th>
-											<th>Kailan napuntahan</th>
-											<th>Saan nakaburol o nakalibing</th>
-											<th>Reported By</th>
-											<th>Is Walk In</th>
-
+											<th>School Name</th>
+											<th>Educational</th>
+											<th>School</th>
+											<th>Amount</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($burials as $burial) { ?>
+										<?php foreach ($guarantees as $guarantee) { ?>
 										<tr>
-											<td><?=$burial['firstname']?></td>
-											<td><?=$burial['lastname']?></td>
-											<td><?=$burial['district']?></td>
-											<td><?=$burial['barangay']?></td>
-											<td><?=$burial['dateOfDeath']?></td>
-											<td><?=$burial['cemeteryAddress']?></td>
-											<td><?=$burial['reportedBy']?></td>
-											<td><?= ($burial['isWalkIn'] == 1) ? "Yes" : "No";?></td> 
+											<td><?=$guarantee['firstname']?></td>
+											<td><?=$guarantee['lastname']?></td>
+											<td><?=$guarantee['birthday']?></td>
 											<td>
-												<a href="/admin/burial/view/<?=$burial['id']?>" class="btn btn-secondary btn-xs"><i class="fa fa-eye"></i> View </a>
-												<a href="/admin/burial/edit/<?=$burial['id']?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-												<a href="/admin/burial/delete/<?=$burial['id']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete </a>
+											<?php $birthdate = explode("-", $guarantee['birthday']);
+												echo date('Y') - $birthdate[0];?>
+											</td>										
+											<td><?=$guarantee['gender']?></td>
+											<td><?=$guarantee['contactNumber']?></td>
+											<td><?=$guarantee['district']?></td>
+											<td><?=$guarantee['barangay']?></td>
+											<td><?=$guarantee['schoolname']?></td>
+											<td><?=$guarantee['educational']?></td>
+											<td><?=$guarantee['school']?></td>
+											<td><?= "₱" . number_format($guarantee['amount'])?></td>
+											<td>
+												<!-- <a href="/admin/guarantee-letter/view/<?=$guarantee['id']?>" class="btn btn-secondary btn-xs"><i class="fa fa-eye"></i> View </a> -->
+												<a href="/admin/educational/edit/<?=$guarantee['id']?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+												<a href="/admin/educational/delete/<?=$guarantee['id']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete </a>
 											</td>
 										</tr>
 										<?php } ?>
@@ -90,3 +101,4 @@
 
 				<!-- Sunny Admin App -->
 				<script src="/js/template.js"></script>
+				<script src="/js/pages/dashboard.js"></script>

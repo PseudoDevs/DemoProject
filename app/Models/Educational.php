@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Assist extends Model
+class Educational extends Model
 {
     protected $DBGroup              = 'default';
-    protected $table                = 'tblassist';
+    protected $table                = 'tbleducational';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $insertID             = 0;
@@ -15,11 +15,17 @@ class Assist extends Model
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
     protected $allowedFields        = [
-        'citizen_id',
-        'assistance_description',
-        'assistance_type',
-        'assistedBy',
-        'received_at'
+        'firstname',
+        'lastname',
+        'contactNumber',
+        'birthday',
+        'gender',
+        'amount',
+        'educational',
+        'school',
+        'schoolname',
+        'district',
+        'barangay'
     ];
 
     // Dates

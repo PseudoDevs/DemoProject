@@ -13,13 +13,13 @@
 			<div class="content-header">
 				<div class="d-flex align-items-center">
 					<div class="mr-auto">
-						<h3 class="page-title">Mga Kalingkod</h3>
+						<h3 class="page-title">Recipients</h3>
 						<div class="d-inline-block align-items-center">
 							<nav>
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
 									<li class="breadcrumb-item" aria-current="page">Admin</li>
-									<li class="breadcrumb-item active" aria-current="page">Mga Kalingkod</li>
+									<li class="breadcrumb-item active" aria-current="page">Recipients</li>
 								</ol>
 							</nav>
 						</div>
@@ -31,7 +31,7 @@
 				<div class="row">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">Listahan ng mga Kalingkod</h3>
+							<h3 class="box-title">Recipients List</h3>
 							<h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
 						</div>
 						<div class="box-body">

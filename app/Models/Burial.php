@@ -23,6 +23,8 @@ class Burial extends Model
         'citizen_id',
         'assist_id',
         'relationship',
+        'reportedBy',
+        'isWalkIn',
         'barangay'
     ];
 

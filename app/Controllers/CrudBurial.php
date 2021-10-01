@@ -12,7 +12,7 @@ class CrudBurial extends BaseController
     public function index()
     {
         $burial = new Burial();
-        $data['burials'] = $burial->findAll();
+        $data['burials'] = $burial->orderBy('id', 'desc')->findAll();
         return view('burial/list',$data);
     }
 
@@ -45,6 +45,33 @@ class CrudBurial extends BaseController
         }
         $data['burial'] = $hasData;
         return view('burial/edit', $data);
+    }
+    
+    public function newBurial()
+    {
+        return view('burial/add');
+    }
+    public function addBurial()
+    {
+        if ($this->request->getMethod() == 'post') {
+      
+            $burial = new Burial();
+            $burialData = array(
+            'firstname' => $_POST['firstName'],
+            'lastname'=> $_POST['lastName'],
+            'dateOfDeath'=> $_POST['dateOfDeath'],
+            'cemeteryAddress'=> $_POST['cemeteryAddress'],
+            'district'=> $_POST['distrito'],
+            'citizen_id'=> 0,
+            'relationship'=> $_POST['relationship'],
+            'reportedBy'=> $_POST['reportedBy'],
+            'isWalkIn'=> $_POST['walkIn'],
+            'barangay'=> $_POST['barangay']
+        );
+            if ($burial->save($burialData)) {
+                echo "<script> location.href='/admin/burial'; </script>";
+            }
+         }
     }
 
     public function updateBurial()

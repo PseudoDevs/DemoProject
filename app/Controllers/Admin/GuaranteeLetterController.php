@@ -10,7 +10,7 @@ class GuaranteeLetterController extends BaseController
     public function index()
     {
         $guarantee = new GuaranteeLetter();
-        $data['guarantees'] = $guarantee->findAll();
+        $data['guarantees'] = $guarantee->orderBy('id', 'desc')->findAll();
         return view('guaranteeLetter/list',$data);
     }
     public function guaranteeAdd()

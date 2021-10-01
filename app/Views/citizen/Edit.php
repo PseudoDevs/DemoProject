@@ -11,13 +11,13 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <p class="page-title"><a href="/admin/citizen"><i class="fa fa-arrow-left"></i> Back to List Citizen</a></p>
+                        <p class="page-title"><a href="/admin/citizen"><i class="fa fa-arrow-left"></i> Back to List Recipients</a></p>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
                                     <li class="breadcrumb-item" aria-current="page">Admin</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Edit Citizen</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Recipients</li>
                                 </ol>
                             </nav>
                         </div>
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h4 class="box-title">Edit Citizen Information</h4>
+                            <h4 class="box-title">Edit Recipient Information</h4>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

@@ -10,7 +10,7 @@ class CitizenController extends BaseController
     public function index()
     {
         $citizen = new Citizen();
-        $data['citizens'] = $citizen->findAll();
+        $data['citizens'] = $citizen->orderBy('id', 'desc')->findAll();
         return view('citizen/List', $data);
     }
     public function citizenAdd()

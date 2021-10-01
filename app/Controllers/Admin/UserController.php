@@ -10,7 +10,7 @@ class UserController extends BaseController
     public function index()
     {
         $users = new User();
-        $data['users'] = $users->findAll();
+        $data['users'] = $users->orderBy('id', 'desc')->findAll();
         return view('users/list',$data);
     }
     public function userAdd()
